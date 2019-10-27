@@ -156,3 +156,7 @@ Nginx上HTTP服务器扩展。服务器不向客户端返回任何信息，并�
 
 ##### 494 Request Header Too Large
 在错误代码431提出之前Nginx上使用的扩展HTTP代码，请求头过大。
+
+
+[http MDN](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Status)
+[http 维基百科](https://zh.wikipedia.org/wiki/HTTP%E7%8A%B6%E6%80%81%E7%A0%81)
