@@ -19,3 +19,5 @@
 ES6引入了任务队列的概念，任务队列是 JS 中的 promise 所使用的。
 
 消息队列和任务队列的区别在于，任务队列的优先级高于消息队列，这意味着任务队列中的promise.then将在消息队列中的回调之前执行
+
+- [最佳讲解](https://mp.weixin.qq.com/s/cOMlH-z5noHrg6Upg6zyNw)
