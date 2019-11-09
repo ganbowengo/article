@@ -171,56 +171,91 @@ function dp_gold(n, h, person, arr) {
             }
         }
     }
+    let result = [] // 获取最佳子路径
+    let i = n - 1
+    let j = h
+    while (i >= 0) { // 从最优解向前回溯
+        // 如果c[i][j] = c[i-1][j],表明商品i没有被选择；否则就被选择
+        // 从表格的右下端开始，即c[5][10]，回溯。
+        // 如c[5][10]≠c[4][10]c[5][10]≠c[4][10]则商品5被选择，而此时背包容量j-w[5]=4;继续向上回溯，比较c[4][4]=c[3][4],表明商品4不选。
+        // 回溯到第一个商品时，如果c[1][j]≠0c[1][j]≠0,表明被选择
+        if (i > 0 && w[i][j] !== w[i - 1][j]) {
+            j = j - person[i]
+            result.unshift(i)
+        }
+        if (i === 0 && w[i][j] !== 0) {
+            result.unshift(i)
+        }
+        i--
+    }
     return w[n - 1][h]
 }
 
 // 动态规划解法 优化空间
 function dp_gold1(n, h, person, arr) {
     // 初始化数组
-    let w = new Array(h).fill(0).map((item, index) => index + 1 < person[0] ? 0 : arr[0])
+    let w = new Array(h).fill(0).map((item, index) => index < person[0] ? 0 : arr[0])
     let result = new Array(h).fill(0)
+    let c = []
     let a, b
-    for (let i = 1; i < n; i++) {
-        console.log(w)
-        for (let j = 0; j < h; j++) {
-            if (j + 1 < person[i]) result[j] = w[j]
+    for (let i = 0; i < n; i++) {
+        for (let j = 0; j <= h; j++) {
+            if (j < person[i]) result[j] = w[j]
             else {
-                a = (w[j + 1 - person[i]] || 0) + arr[i]
+                a = w[j - person[i]] + arr[i]
                 b = w[j]
                 result[j] = Math.max(a, b)
             }
         }
-        w = result
+        w = JSON.parse(JSON.stringify(result)) // 不深拷贝 数据会出现问题
     }
-    console.log(w)
-    return w[h - 1]
-}
-
-
-function dp_gold2(n, w, g, p) {
-    let s = new Array(p.length)
-    let r = new Array(p.length)
-    for (let i = 0; i <= n; i++) {
-        s[i] = i < p[0] ? 0 : g[0]
-    }
-    console.log(s)
-    let a, b
-    for (let i = 0; i < n; i++) {
-        for (let j = 0; j <= w; j++) {
-            if (j < p[i]) r[j] = s[j]
-            else {
-                a = s[j - p[i]] + g[i]
-                b = s[j]
-                r[j] = Math.max(a, b)
-            }
-        }
-        s = r
-    }
-    console.log(r, s)
-    return s[n]
+    return w[h]
 }
 
 log('rec_gold', () => rec_gold(5, 10, [5, 5, 3, 4, 3], [400, 500, 200, 300, 350]))
-log('dp_gold', () => dp_gold(5, 11, [5, 5, 3, 4, 3], [400, 500, 200, 300, 350]))
-log('dp_gold1', () => dp_gold1(5, 10, [5, 5, 3, 4, 3], [400, 500, 200, 300, 350]))
-log('dp_gold2', () => dp_gold2(5, 10, [5, 5, 3, 4, 3], [400, 500, 200, 300, 350]))
+log('dp_gold', () => dp_gold(5, 10, [5, 5, 3, 4, 3], [400, 500, 200, 300, 350]))
+log('dp_gold1', () => dp_gold1(5, 10, [5, 5, 3, 4, 3], [400, 500, 200, 300, 350]), true)
+
+
+// leetcode 62题 m*n个格子 每个格子只能向右或向下移动一步 到m*n格子有多少路径
+/**
+ * 有两种方式 -> 递推关系
+ *      f(m,n) =  f(m-1, n) + f(m, n)
+ * 结束条件 
+ *      n == 1 || m == 1  -> 1
+ */
+
+// 递归解法
+function rec_box(m, n) {
+    if (m === 1 || n === 1) {
+        return 1
+    }
+    return rec_box(m - 1, n) + rec_box(m, n - 1)
+}
+
+// 动态规划 空间O(n * m)
+function dp_box(m, n) {
+    let arr = new Array(m)
+    for (let i = 0; i < m; i++) {
+        arr[i] = new Array(n)
+        for (let j = 0; j < n; j++) {
+            if (i === 0 || j === 0) arr[i][j] = 1
+            else arr[i][j] = arr[i - 1][j] + arr[i][j - 1]
+        }
+    }
+    return arr[m - 1][n - 1]
+}
+
+// 优化动态规划 空间O(n)
+function dp_box1(m, n) {
+    let arr = new Array(m).fill(1)
+    for (let i = 1; i < m; i++) {
+        for (let j = 1; j < n; j++) {
+            arr[j] = arr[j] + arr[j - 1]
+        }
+    }
+    return arr[n - 1]
+}
+log('rec_box', () => rec_box(7, 3))
+log('dp_box', () => dp_box(7, 3))
+log('dp_box1', () => dp_box1(7, 3), true)
