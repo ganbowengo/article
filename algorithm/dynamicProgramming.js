@@ -259,3 +259,146 @@ function dp_box1(m, n) {
 log('rec_box', () => rec_box(7, 3))
 log('dp_box', () => dp_box(7, 3))
 log('dp_box1', () => dp_box1(7, 3), true)
+
+
+// 公共序列数问题 - 不需要连续
+// A字符串长度为m  B字符串长度为n 找到两个的公共子序列
+/**
+ * -> 递推关系
+ *      A[m] === B[n]
+ *      f(m,n) = f(m-1,n-1) + 1
+ *      A[m] !== B[n]
+ *      f(m,n) = Max(f(m,n-1), f(m-1,n))
+ * 结束条件
+ *      n === 0 || m === 0 -> 0
+ */
+
+//  递归解法
+function rec_common_str(m, n, str1, str2) {
+    if (m === 0 || n === 0) {
+        return 0
+    }
+    if (str1[m] === str2[n]) {
+        return rec_common_str(m - 1, n - 1, str1, str2) + 1
+    } else {
+        let a = rec_common_str(m - 1, n, str1, str2)
+        let b = rec_common_str(m, n - 1, str1, str2)
+        return Math.max(a, b)
+    }
+}
+
+//  动态规划解法
+function dp_common_str(str1, str2) {
+    let m = str1.length
+    let n = str2.length
+    let res = new Array(m + 1)
+    let a, b
+    for (let i = 0; i <= m; i++) {
+        res[i] = new Array(n + 1)
+        for (let j = 0; j <= n; j++) {
+            if (i === 0 || j === 0) res[i][j] = 0
+            else if (str1[i] === str2[j]) {
+                res[i][j] = res[i - 1][j - 1] + 1
+            } else {
+                a = res[i - 1][j]
+                b = res[i][j - 1]
+                res[i][j] = Math.max(a, b)
+            }
+        }
+    }
+    return res[m][n]
+}
+
+let str1 = 'ABCBDAB'
+let str2 = 'BDCABA'
+log('rec_common_str', () => rec_common_str(str1.length, str2.length, str1, str2))
+log('dp_common_str', () => dp_common_str(str1, str2), true)
+
+
+// 最长公共子串数问题 - 连续
+// A字符串长度为m  B字符串长度为n 找到两个的公共子串
+/**
+ * -> 递推关系
+ *      A[m] === B[n]
+ *      f(m,n) = f(m-1,n-1) + 1
+ *      A[m] !== B[n]
+ *      f(m,n) = 0
+ * 结束条件
+ *      n === 0 || m === 0 -> 0
+ */
+
+// 动态规划
+function dp_max_common_str(str1, str2) {
+    let m = str1.length
+    let n = str2.length
+    let max = 0
+    let res = new Array(m + 1)
+    for (let i = 0; i <= m; i++) {
+        res[i] = new Array(n + 1)
+        for (let j = 0; j <= n; j++) {
+            if (i === 0 || j === 0) res[i][j] = 0
+            else if (str1[i] === str2[j]) {
+                res[i][j] = res[i - 1][j - 1] + 1
+                max = Math.max(max, res[i][j])
+            } else {
+                res[i][j] = 0
+            }
+        }
+    }
+    return max
+}
+
+let str3 = 'ABCBDAB'
+let str4 = 'BDCABA'
+log('dp_max_common_str', () => dp_max_common_str(str3, str4), true)
+
+
+// 背包问题
+// 小偷发现了n个商品，第i个商品重量为wi,价值为vi。小偷希望尽量拿走价值高的商品，但是他的背包只能容纳W重的商品。求如何取舍这些商品？
+/**
+ * -> 递推关系
+ *      选择 i 
+ *      f(i, w) = max(f(i - 1, w - wi) + vi,f(i - 1, w)) 
+ *      不选择 i
+ *      f(i, w) = f(i - 1, w)
+ * 结束条件
+ *      i === 0 => 0
+ *      i === 1 => v1
+ *      i > 1 && w < wi  => f(i - 1, w)
+ *      i > 1 && w > wi  => f(i, w) = max(f(i - 1, w - wi) + vi,f(i - 1, w))
+ */
+
+// 递归解法
+function rec_package(n, w, wArr, vArr) {
+    if (n === 0 && w < wArr[0]) return 0
+    if (n === 0 && w >= wArr[0]) return vArr[0]
+    if (n >= 1 && w < wArr[n]) return rec_package(n - 1, w, wArr, vArr)
+    let a = rec_package(n - 1, w - wArr[n], wArr, vArr) + vArr[n]
+    let b = rec_package(n - 1, w, wArr, vArr)
+    return Math.max(a, b)
+}
+
+// 动态规划解法
+function dp_package(n, w, wArr, vArr) {
+    let arr = new Array(n).fill(0)
+    let a, b
+    for (let i = 0; i < n; i++) {
+        arr[i] = new Array(w).fill(0)
+        for (let j = 0; j < w; j++) {
+            if (i === 0 && j < wArr[0]) arr[i][j] = 0
+            else if (i === 0 && j >= wArr[0]) arr[i][j] = vArr[0]
+            else if (i >= 1 && j < wArr[i]) arr[i][j] = arr[i - 1][j]
+            else {
+                a = arr[i - 1][j - wArr[i]] + vArr[i]
+                b = arr[i - 1][j]
+                arr[i][j] = Math.max(a, b)
+            }
+        }
+    }
+    return arr[n - 1][w - 1]
+}
+
+let wArr = [3, 6, 3, 8, 6]
+let vArr = [4, 6, 6, 12, 10]
+log('rec_package', () => rec_package(4, 10, wArr, vArr))
+log('dp_package', () => dp_package(wArr.length, 10, wArr, vArr))
