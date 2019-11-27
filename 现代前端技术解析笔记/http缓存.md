@@ -13,8 +13,8 @@ expires | GMT 时间 绝对过期时间 | 低|1. 服务器与浏览器时间不�
 
 - 协商缓存 - 返回的状态码为 304、200  
 1.在第一次请求时在***响应报文***带有 etag（值是hash值）、last-modified（值是GMT格式的时间）   
-2.在第二次请求时请求报文头部带上if-not-match（etag中的hash值）、last-modified-since（last-modified中的时间）在服务器端顺序比较if-not-match
-中的hash值、last-modified-since中的时间，hash不同时请求新资源 响应200，否则返回304 告诉浏览器重定向到缓存
+2.在第二次请求时请求报文头部带上if-not-match（etag中的hash值）、if-modified-since（last-modified中的时间）在服务器端顺序比较if-not-match
+中的hash值、if-modified-since中的时间，hash不同时请求新资源 响应200，否则返回304 告诉浏览器重定向到缓存
 
 - HTTP缓存流程如下
 
