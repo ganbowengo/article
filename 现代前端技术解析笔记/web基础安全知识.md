@@ -3,7 +3,7 @@
  * @Author: ganbowen
  * @Date: 2019-12-04 16:11:43
  * @LastEditors: ganbowen
- * @LastEditTime: 2019-12-04 16:16:34
+ * @LastEditTime: 2019-12-18 17:32:17
  -->
 1. xss（cross site script） 跨站脚本攻击 
 2. SQL注入攻击
@@ -91,6 +91,15 @@ sql = select * from user_table where id=100 or name=%user%
 **常用解决措施**：
 1. cookie设置为HttpOnly，浏览器没有cookie操作权限，避免攻击者获取并伪造cookie的情况，达到防御CSRF的目的。
 2. 增加Token，在请求中放入攻击者所不能伪造的信息，并且该信总不存在于cookie之中。Token可以放在session中或通过Http请求投中的Authorization的特定认证字段传递，在服务端验证Token，攻击者就不能通过获取cookie中的信息轻易伪造请求通过服务端校验，达到防御CSRF的目的。
-3. 通过Referer设别，（IE6或FF2等浏览器可以伪造referer），在HTTP请求的时候会在请求头中自动添加发起请求网站的地址，在服务端校验referer是不是有效的网站地址，如果攻击者在非当前网站发起请求referer就不能通过校验，达到防御CSRF的目的。
+3. 通过Referer设置，（IE6或FF2等浏览器可以伪造referer），在HTTP请求的时候会在请求头中自动添加发起请求网站的地址，在服务端校验referer是不是有效的网站地址，如果攻击者在非源网站发起请求referer就不能通过校验，达到防御CSRF的目的。
+> 有一些场景是不适合将来源 URL 暴露给服务器的,可以设置Origin 属性只包含了域名信息，并没有包含具体的 URL 路径，服务器的策略是优先判断 Origin，再根据实际情况判断是否使用 Referer 值。
+4. 利用cookie的SameSite属性：
+```
+set-cookie: 1P_JAR=2019-10-20-06; expires=Tue, 19-Nov-2019 06:36:21 GMT; path=/; domain=.google.com; SameSite=none
+// SameSite 选项通常有 Strict、Lax 和 None 三个值。
+// Strict: 页面会完全禁止非源网站的请求带上Cookie
+// Lax: 页面不会禁止非源网站的GET 但会禁止POST、img、iframe等标签的请求
+// None: 没有限制
+```
 
 任何所谓的安全都是相对来说的，知识理论的破解时间增加，不容被攻击，要结合网站的实际情况，结合验证码等手段加强安全网站安全机制。
