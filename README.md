@@ -3,7 +3,7 @@
  * @Author: ganbowen
  * @Date: 2019-10-27 15:07:11
  * @LastEditors  : ganbowen
- * @LastEditTime : 2020-01-11 17:18:38
+ * @LastEditTime : 2020-01-11 17:20:13
  -->
 日常技术文章沉淀
 
@@ -14,9 +14,9 @@
 
 #### 日常开发总结
 - CSS
-1. [JS 事件流-消息队列-任务队列](https://github.com/ganbowengo/article/blob/master/%E6%97%A5%E5%B8%B8%E6%80%BB%E7%BB%93/JS%E4%BA%8B%E4%BB%B6%E6%B5%81%20%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97%20%E4%BB%BB%E5%8A%A1%E9%98%9F%E5%88%97.md)
+1. [相对定位与绝对定位](https://github.com/ganbowengo/article/blob/master/%E6%97%A5%E5%B8%B8%E6%80%BB%E7%BB%93/CSS/%E7%9B%B8%E5%AF%B9%E5%AE%9A%E4%BD%8D%E4%B8%8E%E7%BB%9D%E5%AF%B9%E5%AE%9A%E4%BD%8D.md)
 - JS
-2. [JS 事件流-消息队列-任务队列](https://github.com/ganbowengo/article/blob/master/%E6%97%A5%E5%B8%B8%E6%80%BB%E7%BB%93/JS%E4%BA%8B%E4%BB%B6%E6%B5%81%20%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97%20%E4%BB%BB%E5%8A%A1%E9%98%9F%E5%88%97.md)
+2. [JS 事件流-消息队列-任务队列](https://github.com/ganbowengo/article/blob/master/%E6%97%A5%E5%B8%B8%E6%80%BB%E7%BB%93/JS/JS%E4%BA%8B%E4%BB%B6%E6%B5%81%20%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97%20%E4%BB%BB%E5%8A%A1%E9%98%9F%E5%88%97.md)
 
 
 
