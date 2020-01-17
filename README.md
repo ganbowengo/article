@@ -3,7 +3,7 @@
  * @Author: ganbowen
  * @Date: 2019-10-27 15:07:11
  * @LastEditors  : ganbowen
- * @LastEditTime : 2020-01-17 10:55:55
+ * @LastEditTime : 2020-01-17 10:56:38
  -->
 日常技术文章沉淀
 
@@ -11,19 +11,19 @@
 
 - [vue 源码解读之路 version --- 2.6.10](https://github.com/ganbowengo/article/blob/master/vue/vue%20%E6%BA%90%E7%A0%81%E8%A7%A3%E8%AF%BB%E4%B9%8B%E8%B7%AF%20version%20---%202.6.10.md)
 
-
+g
 #### 日常开发总结
 - CSS
 1. [相对定位与绝对定位](https://github.com/ganbowengo/article/blob/master/%E6%97%A5%E5%B8%B8%E6%80%BB%E7%BB%93/CSS/%E7%9B%B8%E5%AF%B9%E5%AE%9A%E4%BD%8D%E4%B8%8E%E7%BB%9D%E5%AF%B9%E5%AE%9A%E4%BD%8D.md)
 - JS
 1. [JS 事件流-消息队列-任务队列](https://github.com/ganbowengo/article/blob/master/%E6%97%A5%E5%B8%B8%E6%80%BB%E7%BB%93/JS/JS%E4%BA%8B%E4%BB%B6%E6%B5%81%20%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97%20%E4%BB%BB%E5%8A%A1%E9%98%9F%E5%88%97.md)
 2. [跨域详解](https://github.com/ganbowengo/article/blob/master/%E6%97%A5%E5%B8%B8%E6%80%BB%E7%BB%93/JS/%E8%B7%A8%E5%9F%9F%E8%AF%A6%E8%A7%A3.md)
-2. [AMD、CMD、commonJS、import\export](https://github.com/ganbowengo/article/blob/master/%E6%97%A5%E5%B8%B8%E6%80%BB%E7%BB%93/JS/AMD%E3%80%81CMD%E3%80%81commonJS%E3%80%81import%5Cexport.md)
+3. [AMD、CMD、commonJS、import\export](https://github.com/ganbowengo/article/blob/master/%E6%97%A5%E5%B8%B8%E6%80%BB%E7%BB%93/JS/AMD%E3%80%81CMD%E3%80%81commonJS%E3%80%81import%5Cexport.md)
 - 设计模式
 1. [代理模式](https://github.com/ganbowengo/article/blob/master/%E6%97%A5%E5%B8%B8%E6%80%BB%E7%BB%93/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F.md)
 2. [单例模式](https://github.com/ganbowengo/article/blob/master/%E6%97%A5%E5%B8%B8%E6%80%BB%E7%BB%93/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F.md)
 3. [工厂模式](https://github.com/ganbowengo/article/blob/master/%E6%97%A5%E5%B8%B8%E6%80%BB%E7%BB%93/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F.md)
-3. [观察者模式](https://github.com/ganbowengo/article/blob/master/%E6%97%A5%E5%B8%B8%E6%80%BB%E7%BB%93/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F.md)
+4. [观察者模式](https://github.com/ganbowengo/article/blob/master/%E6%97%A5%E5%B8%B8%E6%80%BB%E7%BB%93/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F.md)
 
 #### http
 
