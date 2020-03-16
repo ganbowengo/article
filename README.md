@@ -3,7 +3,7 @@
  * @Author: ganbowen
  * @Date: 2019-10-27 15:07:11
  * @LastEditors: ganbowen
- * @LastEditTime: 2020-03-16 18:07:38
+ * @LastEditTime: 2020-03-16 18:31:56
  -->
 
 日常技术文章沉淀
@@ -23,6 +23,11 @@
 1. [JS 事件流-消息队列-任务队列](https://github.com/ganbowengo/article/blob/master/%E6%97%A5%E5%B8%B8%E6%80%BB%E7%BB%93/JS/JS%E4%BA%8B%E4%BB%B6%E6%B5%81%20%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97%20%E4%BB%BB%E5%8A%A1%E9%98%9F%E5%88%97.md)
 2. [跨域详解](https://github.com/ganbowengo/article/blob/master/%E6%97%A5%E5%B8%B8%E6%80%BB%E7%BB%93/JS/%E8%B7%A8%E5%9F%9F%E8%AF%A6%E8%A7%A3.md)
 3. [AMD、CMD、commonJS、import\export](https://github.com/ganbowengo/article/blob/master/%E6%97%A5%E5%B8%B8%E6%80%BB%E7%BB%93/JS/AMD%E3%80%81CMD%E3%80%81commonJS%E3%80%81import%5Cexport.md)
+4. [类型转换](https://github.com/ganbowengo/article/blob/master/%E6%97%A5%E5%B8%B8%E6%80%BB%E7%BB%93/JS/%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2.md)
+5. [Npm 包的版本控制](https://github.com/ganbowengo/article/blob/master/%E6%97%A5%E5%B8%B8%E6%80%BB%E7%BB%93/JS/Npm%E5%8C%85%E7%9A%84%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6.md)
+6. [Proxy 与 defineProperty](https://github.com/ganbowengo/article/blob/master/%E6%97%A5%E5%B8%B8%E6%80%BB%E7%BB%93/JS/Proxy%E4%B8%8EdefineProperty.md)
+7. [typeof、instance、toString、constructor 的区别](https://github.com/ganbowengo/article/blob/master/%E6%97%A5%E5%B8%B8%E6%80%BB%E7%BB%93/JS/typeof%E3%80%81instance%E3%80%81toString%E3%80%81constructor%E7%9A%84%E5%8C%BA%E5%88%AB.md)
+8. [vue-cli2 与 cli3 的区别](https://github.com/ganbowengo/article/blob/master/%E6%97%A5%E5%B8%B8%E6%80%BB%E7%BB%93/JS/vue-cli2%E4%B8%8Ecli3%E7%9A%84%E5%8C%BA%E5%88%AB.md)
 
 - 设计模式
 
