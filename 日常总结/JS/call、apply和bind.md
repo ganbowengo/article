@@ -3,7 +3,7 @@
  * @Author: ganbowen
  * @Date: 2020-03-23 10:38:19
  * @LastEditors: ganbowen
- * @LastEditTime: 2020-03-23 15:25:21
+ * @LastEditTime: 2020-03-23 15:56:45
  -->
 
 ##### call
@@ -34,7 +34,8 @@ Function.prototype.call = function(thisArg) {
 
 - `thisArg` 指定的`this`值，可以为 null 或 undefined，会指向全局对象
 - `[argsArray]` 调用函数传入的参数数组
-  实现：
+
+实现：
 
 ```js
 Function.prototype.apply = function(thisArg, args) {
@@ -53,8 +54,9 @@ Function.prototype.apply = function(thisArg, args) {
 参数：`function.bind(thisArg[, arg1[, arg2[, ...]]])`
 
 - `thisArg` 指定的`this`值，当使用 `bind` 在`setTimeout` 中创建一个函数（作为回调提供）时，作为 `thisArg` 传递的任何原始值都将转换为`object`(装箱操作)。 `bind` 函数的参数列表为空，执行作用域的 `this` 将被视为新函数的`thisArg`。
-  实现：
 - `arg1, arg2, ...` 当目标函数被调用时，被预置入绑定函数的参数列表中的参数。
+
+实现：
 
 ```js
 Function.prototype.bind = function(thisArgs) {
@@ -71,7 +73,7 @@ Function.prototype.bind = function(thisArgs) {
 ##### 相同及区别
 
 1. 参数
-   + 当`this`没有指定的时候，`call\apply` 指向全局作用域，`bind` 指向当前执行作用域
-   + `bind\call`的参数以列表的形式，独立传入，`apply`需要将参数以数组的形式出入。
+   - 当`this`没有指定的时候，`call\apply` 指向全局作用域，`bind` 指向当前执行作用域
+   - `bind\call`的参数以列表的形式，独立传入，`apply`需要将参数以数组的形式出入。
 2. 执行
-   + `call\apply`调用后立即执行，返回`this`指向的函数的返回值，`bind`返回一个函数，并将`bind`传入的参数预制到将要执行函数中
+   - `call\apply`调用后立即执行，返回`this`指向的函数的返回值，`bind`返回一个函数，并将`bind`传入的参数预制到将要执行函数中

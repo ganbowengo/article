@@ -3,15 +3,15 @@
  * @Author: ganbowen
  * @Date: 2019-10-27 15:07:11
  * @LastEditors: ganbowen
- * @LastEditTime: 2020-03-16 18:31:56
+ * @LastEditTime: 2020-03-23 16:01:07
  -->
 
 日常技术文章沉淀
 
 #### vue
 
-- [vue 源码解读之路 version --- 2.6.10](https://github.com/ganbowengo/article/blob/master/vue/vue%20%E6%BA%90%E7%A0%81%E8%A7%A3%E8%AF%BB%E4%B9%8B%E8%B7%AF%20version%20---%202.6.10.md)
-
+1. [vue 源码解读之路 version --- 2.6.10](https://github.com/ganbowengo/article/blob/master/vue/vue%20%E6%BA%90%E7%A0%81%E8%A7%A3%E8%AF%BB%E4%B9%8B%E8%B7%AF%20version%20---%202.6.10.md)
+2. [从源码角度看vue.mixin](https://github.com/ganbowengo/article/blob/master/vue/%E4%BB%8E%E6%BA%90%E7%A0%81%E8%A7%92%E5%BA%A6%E7%9C%8Bvue.mixin.md)
 #### 日常开发总结
 
 - CSS
@@ -28,7 +28,7 @@
 6. [Proxy 与 defineProperty](https://github.com/ganbowengo/article/blob/master/%E6%97%A5%E5%B8%B8%E6%80%BB%E7%BB%93/JS/Proxy%E4%B8%8EdefineProperty.md)
 7. [typeof、instance、toString、constructor 的区别](https://github.com/ganbowengo/article/blob/master/%E6%97%A5%E5%B8%B8%E6%80%BB%E7%BB%93/JS/typeof%E3%80%81instance%E3%80%81toString%E3%80%81constructor%E7%9A%84%E5%8C%BA%E5%88%AB.md)
 8. [vue-cli2 与 cli3 的区别](https://github.com/ganbowengo/article/blob/master/%E6%97%A5%E5%B8%B8%E6%80%BB%E7%BB%93/JS/vue-cli2%E4%B8%8Ecli3%E7%9A%84%E5%8C%BA%E5%88%AB.md)
-
+9. [call、apply和bind](https://github.com/ganbowengo/article/blob/master/%E6%97%A5%E5%B8%B8%E6%80%BB%E7%BB%93/JS/call%E3%80%81apply%E5%92%8Cbind.md)
 - 设计模式
 
 1. [代理模式](https://github.com/ganbowengo/article/blob/master/%E6%97%A5%E5%B8%B8%E6%80%BB%E7%BB%93/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F.md)
