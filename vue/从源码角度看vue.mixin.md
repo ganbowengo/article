@@ -3,7 +3,7 @@
  * @Author: ganbowen
  * @Date: 2020-03-18 18:08:46
  * @LastEditors: ganbowen
- * @LastEditTime: 2020-03-20 17:41:49
+ * @LastEditTime: 2020-03-23 16:02:49
  -->
 
 ##### mixin
@@ -274,112 +274,118 @@ export function set(target: Array<any> | Object, key: any, val: any): any {
 `set` 函数先判断入参是不是数组，如果是数组则直接赋值，再判断 key 是否在`target`中存在，如果存在则直接复制，接下来判断`target`是否是响应式数据，如果是，开发环境报异常，如果不是响应式直接复制返回，其他环境下则将数据转为响应式，触发 dep.notify()
 
 3. 生命周期-Hooks
+
 ```js
 function mergeHook(
-    parentVal: ?Array<Function>,
-    childVal: ?Function | ?Array<Function>
+  parentVal: ?Array<Function>,
+  childVal: ?Function | ?Array<Function>
 ): ?Array<Function> {
-    const res = childVal
-        ? parentVal
-            ? parentVal.concat(childVal)
-            : Array.isArray(childVal)
-                ? childVal
-                : [childVal]
-        : parentVal
-    return res
-        ? dedupeHooks(res)
-        : res
+  const res = childVal
+    ? parentVal
+      ? parentVal.concat(childVal)
+      : Array.isArray(childVal)
+      ? childVal
+      : [childVal]
+    : parentVal;
+  return res ? dedupeHooks(res) : res;
 }
 
 function dedupeHooks(hooks) {
-    const res = []
-    for (let i = 0; i < hooks.length; i++) {
-        if (res.indexOf(hooks[i]) === -1) {
-            res.push(hooks[i])
-        }
+  const res = [];
+  for (let i = 0; i < hooks.length; i++) {
+    if (res.indexOf(hooks[i]) === -1) {
+      res.push(hooks[i]);
     }
-    return res
+  }
+  return res;
 }
 
 LIFECYCLE_HOOKS.forEach(hook => {
-    strats[hook] = mergeHook
-})
+  strats[hook] = mergeHook;
+});
 
 // src/shared/constants.js
 export const LIFECYCLE_HOOKS = [
-  'beforeCreate',
-  'created',
-  'beforeMount',
-  'mounted',
-  'beforeUpdate',
-  'updated',
-  'beforeDestroy',
-  'destroyed',
-  'activated',
-  'deactivated',
-  'errorCaptured',
-  'serverPrefetch'
-]
+  "beforeCreate",
+  "created",
+  "beforeMount",
+  "mounted",
+  "beforeUpdate",
+  "updated",
+  "beforeDestroy",
+  "destroyed",
+  "activated",
+  "deactivated",
+  "errorCaptured",
+  "serverPrefetch"
+];
 ```
+
 即将生命周期函数合并成一个数组，并返回。
+
 4. watch
+
 ```js
-strats.watch = function (
-    parentVal: ?Object,
-    childVal: ?Object,
-    vm?: Component,
-    key: string
+strats.watch = function(
+  parentVal: ?Object,
+  childVal: ?Object,
+  vm?: Component,
+  key: string
 ): ?Object {
-    // work around Firefox's Object.prototype.watch...
-    if (parentVal === nativeWatch) parentVal = undefined
-    if (childVal === nativeWatch) childVal = undefined
-    /* istanbul ignore if */
-    if (!childVal) return Object.create(parentVal || null)
-    if (process.env.NODE_ENV !== 'production') {
-        assertObjectType(key, childVal, vm)
+  // work around Firefox's Object.prototype.watch...
+  if (parentVal === nativeWatch) parentVal = undefined;
+  if (childVal === nativeWatch) childVal = undefined;
+  /* istanbul ignore if */
+  if (!childVal) return Object.create(parentVal || null);
+  if (process.env.NODE_ENV !== "production") {
+    assertObjectType(key, childVal, vm);
+  }
+  if (!parentVal) return childVal;
+  const ret = {};
+  extend(ret, parentVal);
+  for (const key in childVal) {
+    let parent = ret[key];
+    const child = childVal[key];
+    if (parent && !Array.isArray(parent)) {
+      parent = [parent];
     }
-    if (!parentVal) return childVal
-    const ret = {}
-    extend(ret, parentVal)
-    for (const key in childVal) {
-        let parent = ret[key]
-        const child = childVal[key]
-        if (parent && !Array.isArray(parent)) {
-            parent = [parent]
-        }
-        ret[key] = parent
-            ? parent.concat(child)
-            : Array.isArray(child) ? child : [child]
-    }
-    return ret
-}
+    ret[key] = parent
+      ? parent.concat(child)
+      : Array.isArray(child)
+      ? child
+      : [child];
+  }
+  return ret;
+};
 ```
+
 将所有的同名`watch`合并到一个数组中，出发时一次执行。
+
 5. props、methods、computed、inject
+
 ```js
-strats.props =
-strats.methods =
-strats.inject =
-strats.computed = function (
-    parentVal: ?Object,
-    childVal: ?Object,
-    vm?: Component,
-    key: string
+strats.props = strats.methods = strats.inject = strats.computed = function(
+  parentVal: ?Object,
+  childVal: ?Object,
+  vm?: Component,
+  key: string
 ): ?Object {
-    if (childVal && process.env.NODE_ENV !== 'production') {
-        assertObjectType(key, childVal, vm)
-    }
-    if (!parentVal) return childVal
-    const ret = Object.create(null)
-    extend(ret, parentVal)
-    if (childVal) extend(ret, childVal)
-    return ret
-}
+  if (childVal && process.env.NODE_ENV !== "production") {
+    assertObjectType(key, childVal, vm);
+  }
+  if (!parentVal) return childVal;
+  const ret = Object.create(null);
+  extend(ret, parentVal);
+  if (childVal) extend(ret, childVal);
+  return ret;
+};
 ```
+
 上述四种采用相同合并策略，同名时后来者覆盖前者，组件覆盖`mixin`。
 
 6. provide
-调用`mergeDataOrFn`函数，同`data`的合并方式
+   调用`mergeDataOrFn`函数，同`data`的合并方式
 
 ##### 自定义选项合并策略
+
 1. 向 Vue.config.optionMergeStrategies 添加一个函数，在自定义函数中自定义合并规则，等同向`starts`赋值，实例中存在对应的`key`合并时，调用对应的规则。
