@@ -2,8 +2,8 @@
  * @Descripttion:
  * @Author: ganbowen
  * @Date: 2020-02-07 14:23:22
- * @LastEditors  : ganbowen
- * @LastEditTime : 2020-02-07 17:48:19
+ * @LastEditors: ganbowen
+ * @LastEditTime: 2020-03-24 10:55:54
  -->
 
 ##### npm 版本
@@ -37,7 +37,7 @@ npm 版本描述：【主要版本.次要版本.补丁版本】
 
 1. 通过 npm 提供的命令来锁定 `npm shrinkwrap` 来生成 `npm-shrinkwrap.json` 文件
 
-```js
+```linux
 npm shrinkwrap
 npm i vue@2.5.2 -S      // 记录保存到npm-shrinkwrap.json中
 npm uni vue -S          // 删除到npm-shrinkwrap.json中的记录 -S -D 省略不能删除
@@ -47,7 +47,7 @@ npm up vue@2.6.0 -S     // npm-shrinkwrap.json中的记录不更新
 2. npm 版本高于 5.0.0 之后自动生成`package-lock.json`文件
 > 缺点: `package-lock.json`文件不能发包，只能通过将`package-lock.json`修改为`npm-shrinkwrap.json`之后在发包，锁定版本
 
-```js
+```linux
 npm i vue@2.5.2 -S      // 记录保存到package-lock.json中
 npm uni vue -S          // 删除到package-lock.json中的记录 -S -D 可以省略
 npm up vue@2.6.0 -S     // package-lock.json中的记录不更新
@@ -55,7 +55,7 @@ npm up vue@2.6.0 -S     // package-lock.json中的记录不更新
 
 3. yarn 版本管理 自动生成`yarn.lock`
 
-```js
+```linux
 yarn add vue@2.5.2      // 记录保存到yarn.lock
 yarn remove vue         // 删除到yarn.lock中的记录
 yarn upgrade vue@2.6.0  // yarn.lock中的记录更新

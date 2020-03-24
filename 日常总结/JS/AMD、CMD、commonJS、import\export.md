@@ -2,8 +2,8 @@
  * @Descripttion:
  * @Author: ganbowen
  * @Date: 2020-01-11 19:18:52
- * @LastEditors  : ganbowen
- * @LastEditTime : 2020-01-11 21:03:24
+ * @LastEditors: ganbowen
+ * @LastEditTime: 2020-03-24 11:07:16
  -->
 
 #### 模块化利器
@@ -14,7 +14,7 @@ AMD(Asynchronous Module Definition)翻译为异步模块定义，是一个规范
 > AMD在加载模块完成后就会执行该模块，所有模块都加载执行完后会进入require的回调函数，执行主逻辑，这样的效果就是依赖模块的执行顺序和书写顺序不一定一致，看网络速度，哪个先下载下来，哪个先执行，但是主逻辑一定在所有依赖加载完成后才执行。
 > AMD推崇依赖前置 在使用的之前require
 
-```
+```js
 define([module-name?], [array-of-dependencies?],[module-factory-or-object]);
 //  module-name 定义的模块的名称，通常省略 String
 //  array-of-dependencies  定义的模块依赖的其他模块,也可以是文件的路径（相对于当前的HTML），可以省略 Array
@@ -23,7 +23,7 @@ define([module-name?], [array-of-dependencies?],[module-factory-or-object]);
 
 引入模块使用方式：
 
-```
+```js
 // 在页面引入requirejs，并且设置data-main入口文件，当require加载完成后回调加载scripts/main文件
 <script data-main="scripts/main" src="js/require.js"></script>
 
@@ -52,7 +52,7 @@ require(["jquery","underscore"],function($,_){
 
 定义模块使用方式：
 
-```
+```js
 // moduleA.js
 define('moduleA',['moduleB'],function(moduleB){
     return moduleB.add(1, 2)
@@ -70,7 +70,7 @@ define(function(){
 
 模块懒加载
 
-```
+```js
 // requireJS 会提前加载所有的依赖模块，如果一个模块 a 在没有点击的时候不需要，那么提前加载是很消耗性能的，可以通过下面的方式在使用相关模块的时候在加载模块 a
 // main.js
 define(function(){
@@ -98,7 +98,7 @@ CMD(Common Module Definition)表示通用模块定义，该规范是国内发展
 > CMD加载完某个依赖模块后并不执行，只是下载而已，在所有依赖模块加载完成后进入主逻辑，遇到require语句的时候才执行对应的模块，这样模块的执行顺序和书写顺序是完全一致的。
 > CMD推崇依赖就近 在使用的时候再require
 
-```
+```js
 define(id?, deps?, factory);
 //  id 表示模块标识 通常省略 String
 //  数组 deps 是模块依赖 通常省略 Array
@@ -107,7 +107,7 @@ define(id?, deps?, factory);
 
 引入模块使用方式：
 
-```
+```js
 // 在页面引入seaJS，seaJS则通过sea.use()来设置。
 // seajs.use(id, callback?) callback可省略
 // seaJS默认路径是seaJS文件的所处目录，比如seaJS文件所处路径是'demo'目录下，进行如下入口设置后 
@@ -172,7 +172,7 @@ define(function(require, exports, module){
 node 的模块化引入，通常用在服务端，可以通过使用打包工具Browserify，对CommonJS进行格式转换，使其在浏览器端进行
 
 引入、导出模块
-```
+```js
 module.exports = {} // 导出模块的接口
 exports.add = function() {} 
 
@@ -185,7 +185,7 @@ require(url) // 引入模块
 
 > 在编译的过程中，Node对获取的JavaScript文件内容进行了头尾包装。在头部添加了(function(exports, require, module, filename, dirname) {\n，在尾部添加了\n});
 
-```
+```js
 // 一个正常的JavaScript文件会被包装成如下的样子 每个模块文件之间都进行了作用域隔离
 (function (exports, require, module,  filename,  dirname) {
     var math = require('math');
@@ -198,7 +198,7 @@ require(url) // 引入模块
 ES6 模块是动态引用，并且不会缓存值，模块里面的变量绑定其所在的模块。
 import命令用于输入其他模块提供的功能；使用import命令的时候，用户需要知道所要加载的变量名或函数名
 export default命令，为模块指定默认输出，对应的import语句不需要使用大括号
-```
+```js
 export { a, b }
 import { a, b } from ''
 

@@ -2,15 +2,15 @@
  * @Descripttion:
  * @Author: ganbowen
  * @Date: 2020-02-10 09:37:53
- * @LastEditors  : ganbowen
- * @LastEditTime : 2020-02-11 10:07:03
+ * @LastEditors: ganbowen
+ * @LastEditTime: 2020-03-24 11:08:24
  -->
 
 ##### 主要变化
 
 - 安装命令及构建命令不一样
 
-```
+```linux
 # 2.0
 npm install -g vue-cli
 
@@ -42,7 +42,7 @@ vue init webpack projectname
 3. cli 插件 使用 `vue add`来添加
 4. 预定义设置，在创建 vue-cli 项目的时候会有一些预定义的依赖或配置项如 eslint、vuex、vue-router 等在~/.vuerc 文件中会有对预定义配置文件的定义，再次创建项目的时候就会自动生成配置的项目
 
-```
+```linux
 // .vuerc
 {
   "useTaobaoRegistry": true,

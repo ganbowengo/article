@@ -3,7 +3,7 @@
  * @Author: ganbowen
  * @Date: 2019-12-04 16:11:43
  * @LastEditors: ganbowen
- * @LastEditTime: 2019-12-18 17:32:17
+ * @LastEditTime: 2020-03-24 14:57:22
  -->
 1. xss（cross site script） 跨站脚本攻击 
 2. SQL注入攻击
@@ -11,7 +11,7 @@
 ##### xss（cross site script） 跨站脚本攻击 
 **基本概念**：xss通常是页面中插入了未验证的攻击性脚本导致。可分为三种：存储型（从数据库获取的数据中含有攻击脚本被解析到页面中）；反射型（从URL中获取的数据插入到页面）；MXSS（页面在渲染DOM时，将攻击脚本插入DOM属性中导致）
 
-```
+```vim
 // 存储型 content从后台获取的数据 content = "<script>alert('中毒了')</script>"
 <div>{{content}}</div>
 
@@ -37,7 +37,7 @@ this.body = `<div>${name}</div>`
 ```
 **常用解决措施**：数据校验、将可能出现的攻击内容通过THML字符编码转义
 
-```
+```js
 // html 字符转义编码
 function htmlEncode(str) {
     let s = ''
@@ -57,7 +57,7 @@ function htmlEncode(str) {
 ##### SQL注入攻击
 **基本概念**：页面提交数据到服务器端后，后端未进行数据校验就将数据直接拼接到SQL语句中，直接执行，从而受到攻击。
 
-```
+```js
 let id = req.query['id']
 let sql = `select * from user_table where id=${id}`
 
@@ -78,7 +78,7 @@ sql = select * from user_table where id=100 or name=%user%
 当你登录网站A后，没有登出，cookie有效，访问论坛B，发起GET请求，并带上cookie，达到转账的目的
 假设是POST提交，B网站存在下面的代码，论坛B打开后，表单自动提交，达到转账的目的
 
-```
+```html
 <form id="aaa" action="http://www.xxx.com/transfer.do" metdod="POST" display="none">
     <input type="text" name="accountNum" value="10001"/>
     <input type="text" name="money" value="10000"/>

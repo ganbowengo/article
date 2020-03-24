@@ -2,26 +2,26 @@
  * @Descripttion: 
  * @Author: ganbowen
  * @Date: 2020-01-18 14:30:00
- * @LastEditors  : ganbowen
- * @LastEditTime : 2020-01-22 21:01:17
+ * @LastEditors: ganbowen
+ * @LastEditTime: 2020-03-24 11:00:14
  -->
 ##### typeof 
 typeof 操作符返回一个字符串，表示未经计算的操作数的类型，可以准确判断出String、Boolean、Number、Function、Symbol、Undefined，可以将Array、Object、new * 判断返回一个 'object'
-```
-// typeof '37' === 'string';
-// typeof true === 'boolean';
-// typeof 37 === 'number';
-// typeof NaN === 'number'; 
-// typeof Symbol() === 'symbol';
-// typeof function() {} === 'function';
-// typeof undefined === 'undefined';
-// typeof [] === 'object';
-// typeof {} === 'object';
-// typeof new * === 'object';
+```js
+typeof '37' === 'string';
+typeof true === 'boolean';
+typeof 37 === 'number';
+typeof NaN === 'number'; 
+typeof Symbol() === 'symbol';
+typeof function() {} === 'function';
+typeof undefined === 'undefined';
+typeof [] === 'object';
+typeof {} === 'object';
+typeof new * === 'object';
 ```
 ##### instanceof 
 instanceof 运算符用于检测构造函数的 prototype 属性是否出现在某个实例对象的原型链上。
-```
+```js
 function C(){} 
 function D(){} 
 
@@ -78,7 +78,7 @@ NativeJSON	|The JSON object
 NativeArguments	|Arguments objects
 NativePrivateName|	Private Name objects
 利用伪代码来描述执行步骤
-```
+```js
 function toString(this) {
     this === null ? return [object Null]
     this === undefined ? return [object Undefined]
@@ -110,7 +110,7 @@ function toString(this) {
     return `[object ${tag}]`
 }
 ```
-```
+```js
 Object.prototype.toString.call(1) [object Number]
 Object.prototype.toString.call('2') [object String]
 Object.prototype.toString.call(true) [object Boolean]
@@ -133,7 +133,7 @@ Object.prototype.toString.call(function() {}) [object Function]
 
 ##### constructor
 constructor返回一个指向创建了该对象原型的函数引用。
-```
+```js
 function C() {}
 let O = new C()
 O.constructor === C
