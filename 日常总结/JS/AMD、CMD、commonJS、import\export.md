@@ -2,15 +2,12 @@
  * @Descripttion:
  * @Author: ganbowen
  * @Date: 2020-01-11 19:18:52
- * @LastEditors: ganbowen
- * @LastEditTime: 2020-03-24 11:07:16
+ * @LastEditors  : ganbowen
+ * @LastEditTime : 2021-03-18 21:09:54
  -->
+##### AMD 浏览器模块化
 
-#### 模块化利器
-
-##### AMD
-
-AMD(Asynchronous Module Definition)翻译为异步模块定义，是一个规范，主要使用 requireJS，在加载模块及模块依赖的时候都采用异步模式，避免了渲染阻塞。requireJS 用 require.config()指定引用路径等，用 define()定义模块，用 require()加载模块,**对于依赖的模块，AMD是提前执行**
+AMD(Asynchronous Module Definition)翻译为异步模块定义即AMD CommonJS规范，适用于浏览器端，主要使用 requireJS，在加载模块及模块依赖的时候都采用异步模式，避免了渲染阻塞。requireJS 用 require.config()指定引用路径等，用 define()定义模块，用 require()加载模块,**对于依赖的模块，AMD是提前加载**
 > AMD在加载模块完成后就会执行该模块，所有模块都加载执行完后会进入require的回调函数，执行主逻辑，这样的效果就是依赖模块的执行顺序和书写顺序不一定一致，看网络速度，哪个先下载下来，哪个先执行，但是主逻辑一定在所有依赖加载完成后才执行。
 > AMD推崇依赖前置 在使用的之前require
 
@@ -92,9 +89,9 @@ define(function(){
 })
 ```
 
-##### CMD
+##### CMD 浏览器规范
 
-CMD(Common Module Definition)表示通用模块定义，该规范是国内发展出来的，由阿里的玉伯提出。CMD 有个浏览器的实现 SeaJS，都是 javascript 的模块化解决方案。**对于依赖的模块，CMD是延迟执行**
+CMD(Common Module Definition)表示通用模块定义，该CMD CommonJS规范是国内发展出来的，由阿里的玉伯提出。CMD 有个浏览器的实现 SeaJS，都是 javascript 的模块化解决方案。**对于依赖的模块，CMD是延迟执行**
 > CMD加载完某个依赖模块后并不执行，只是下载而已，在所有依赖模块加载完成后进入主逻辑，遇到require语句的时候才执行对应的模块，这样模块的执行顺序和书写顺序是完全一致的。
 > CMD推崇依赖就近 在使用的时候再require
 
@@ -168,7 +165,7 @@ define(function(require, exports, module){
 })
 ```
 
-##### commonJS
+##### commonJS node模块化规范
 node 的模块化引入，通常用在服务端，可以通过使用打包工具Browserify，对CommonJS进行格式转换，使其在浏览器端进行
 
 引入、导出模块
@@ -194,7 +191,7 @@ require(url) // 引入模块
     };
 });
 ```
-##### import/export
+##### import/export 即ESM规范
 ES6 模块是动态引用，并且不会缓存值，模块里面的变量绑定其所在的模块。
 import命令用于输入其他模块提供的功能；使用import命令的时候，用户需要知道所要加载的变量名或函数名
 export default命令，为模块指定默认输出，对应的import语句不需要使用大括号
@@ -220,5 +217,24 @@ export function each() {...};
 import myFunc,{ each } from 'lib'; 
 ```
 
+##### UMD 
+UMD(Universal Module Definition) 将浏览器AMD贵方和node环境CommonJS规范的模块化合并起来生成新的、公共的模块化规范，使得公共库可以在不同的环境公用一套导出模式，可以通过babel的插件`@babel/plugin-transform-modules-umd`来实现编译后的umd降级处理
+```js
+(function(root, factory){
+    if(typeof define === 'function' && define.amd){
+        // amd 环境
+        define(['b'], factory)
+    } else if(typeof module === 'object' && module.exports){
+        // node
+        module.exports = factory(require('b'));
+    } else {
+        // 挂载到登记对象上
+        root.returnExports = factory(root.b);
+    }
+})(this, function(){
+    
+})
+
+```
 [AMD 及 requireJS](https://www.cnblogs.com/xiaohuochai/p/6847942.html)
 [CMD 及 SeaJS](https://www.cnblogs.com/xiaohuochai/p/6879432.html)
